@@ -45,6 +45,12 @@ Shader GenerateShader(const GLchar * vertexPath, const GLchar * fragmentPath)
     return Shader(shaderDB.size() - 1);
 }
 
+Shader GenerateShader(const GLchar * vertexPath, const GLchar * fragmentPath, const GLchar * tcsPath, const GLchar * tesPath)
+{
+    shaderDB.emplace_back(new Shader_Base(vertexPath, fragmentPath, tcsPath, tesPath));
+    return Shader(shaderDB.size() - 1);
+}
+
 void Shader::SetUniformFloat(const GLchar * uniformName, const GLfloat nb)
 {
     shaderDB[__shaderId]->SetUniformFloat(uniformName, nb);

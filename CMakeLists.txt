@@ -3,7 +3,7 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Project Name
-project ("Assignment4")
+project ("Assignment5")
 
 # C++ Standard Version
 set(CMAKE_CXX_STANDARD 20)
@@ -73,13 +73,13 @@ file (GLOB ASSIGNMENT_HEADERS
     OGL_Implementation/Tools/*.hpp
 )
 
-add_executable(Assignment4
+add_executable(Assignment5
     ${ASSIGNMENT_SOURCES}
     ${ASSIGNMENT_HEADERS}
 )
 
 # Linking libraries to Assignment2
-target_link_libraries(Assignment4 opengl32 glad glfw glm ImGui SOIL freetype
+target_link_libraries(Assignment5 opengl32 glad glfw glm ImGui SOIL freetype
 )
 
 # Profiling
@@ -93,13 +93,13 @@ if(MSVC)
 endif()
 
 # Including root directory & libraries directories
-target_include_directories(Assignment4 PUBLIC
+target_include_directories(Assignment5 PUBLIC
     ${PROJECT_SOURCE_DIR}
     $<INSTALL_INTERFACE:include>
 )
 
 # Installation Procedure
 install(
-    TARGETS Assignment4
+    TARGETS Assignment5
     CONFIGURATIONS ${CMAKE_CONFIGURATION_TYPES}
 )

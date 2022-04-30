@@ -33,6 +33,14 @@ public:
 	 * @param fragmentPath 
 	*/
 	Shader_Base(const GLchar * vertexPath, const GLchar * fragmentPath);
+	/**
+	 * @brief Constructs and generates the shader with Vertex Shader, Fragment Shader, TCS Shader & TES Shader
+	 * @param vertexPath 
+	 * @param fragmentPath 
+	 * @param tcsPath 
+	 * @param tesPath 
+	*/
+	Shader_Base(const GLchar * vertexPath, const GLchar * fragmentPath, const GLchar * tcsPath, const GLchar * tesPath);
 	~Shader_Base();
 
 	/**
@@ -66,6 +74,9 @@ public:
 	void SetUniformMatrix4f(const GLchar * uniformName, const glm::mat4 & mat);
 
 	GLuint GetUniformId(const GLchar * uniformName);
+
+private:
+	bool CompileShader(const GLchar * shaderPath, const GLenum shaderType, GLuint * shaderID);
 
 private:
 	/**

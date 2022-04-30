@@ -61,3 +61,12 @@ public:
  * @param Fragment Path
 */
 Shader GenerateShader(const GLchar * vertexPath, const GLchar * fragmentPath);
+
+/*
+ * @brief Generates shader from GLSL files
+ * @param Vertex Path
+ * @param Fragment Path
+ * @param TCS Path
+ * @param TES Path
+*/
+Shader GenerateShader(const GLchar * vertexPath, const GLchar * fragmentPath, const GLchar * tcsPath, const GLchar * tesPath);

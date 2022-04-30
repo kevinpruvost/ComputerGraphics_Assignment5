@@ -40,6 +40,11 @@ constexpr const char * particleShaderVertex = "resources/Shaders/particle.vert.g
 constexpr const char * particleShaderFrag   = "resources/Shaders/particle.frag.glsl";
 constexpr const char * snowShaderVertex     = "resources/Shaders/snow.vert.glsl";
 constexpr const char * snowShaderFrag       = "resources/Shaders/snow.frag.glsl";
+
+constexpr const char * bezierShaderFrag   = "resources/Shaders/bezier.frag.glsl";
+constexpr const char * bezierShaderVertex = "resources/Shaders/bezier.vert.glsl";
+constexpr const char * bezierShaderTcs    = "resources/Shaders/bezier.tcs.glsl";
+constexpr const char * bezierShaderTes    = "resources/Shaders/bezier.tes.glsl";
 // Planets
 constexpr const char * star = "resources/Textures/Star.bmp";
 // Snow

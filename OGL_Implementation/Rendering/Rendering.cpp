@@ -329,25 +329,27 @@ void Rendering::LoadShadersAndFonts()
 	fonts.insert(fonts.begin(), { font1, font2, font3 });
 
 	// Build and compile our shader program
-	Shader lightShader = GenerateShader(Constants::Paths::lightShaderVertex, Constants::Paths::lightShaderFrag);
-	Shader pointShader = GenerateShader(Constants::Paths::pointShaderVertex, Constants::Paths::pointShaderFrag);
-	Shader faceShader = GenerateShader(Constants::Paths::faceShaderVertex, Constants::Paths::faceShaderFrag);
-	Shader face2DShader = GenerateShader(Constants::Paths::face2DShaderVertex, Constants::Paths::face2DShaderFrag);
+	Shader lightShader     = GenerateShader(Constants::Paths::lightShaderVertex, Constants::Paths::lightShaderFrag);
+	Shader pointShader     = GenerateShader(Constants::Paths::pointShaderVertex, Constants::Paths::pointShaderFrag);
+	Shader faceShader      = GenerateShader(Constants::Paths::faceShaderVertex, Constants::Paths::faceShaderFrag);
+	Shader face2DShader    = GenerateShader(Constants::Paths::face2DShaderVertex, Constants::Paths::face2DShaderFrag);
 	Shader wireframeShader = GenerateShader(Constants::Paths::wireframeShaderVertex, Constants::Paths::wireframeShaderFrag);
-	Shader text2DShader = GenerateShader(Constants::Paths::text2DShaderVertex, Constants::Paths::text2DShaderFrag);
-	Shader text3DShader = GenerateShader(Constants::Paths::text3DShaderVertex, Constants::Paths::text3DShaderFrag);
-	Shader particleShader = GenerateShader(Constants::Paths::particleShaderVertex, Constants::Paths::particleShaderFrag);
-	Shader snowShader = GenerateShader(Constants::Paths::snowShaderVertex, Constants::Paths::snowShaderFrag);
+	Shader text2DShader    = GenerateShader(Constants::Paths::text2DShaderVertex, Constants::Paths::text2DShaderFrag);
+	Shader text3DShader    = GenerateShader(Constants::Paths::text3DShaderVertex, Constants::Paths::text3DShaderFrag);
+	Shader particleShader  = GenerateShader(Constants::Paths::particleShaderVertex, Constants::Paths::particleShaderFrag);
+	Shader snowShader      = GenerateShader(Constants::Paths::snowShaderVertex, Constants::Paths::snowShaderFrag);
+	Shader bezierShader    = GenerateShader(Constants::Paths::bezierShaderVertex, Constants::Paths::bezierShaderFrag);
 
-	shaders.insert({Constants::Paths::lightShaderVertex, std::make_unique<Shader>(lightShader)});
-	shaders.insert({Constants::Paths::pointShaderVertex, std::make_unique<Shader>(pointShader)});
-	shaders.insert({Constants::Paths::faceShaderVertex, std::make_unique<Shader>(faceShader)});
-	shaders.insert({Constants::Paths::face2DShaderVertex, std::make_unique<Shader>(face2DShader)});
+	shaders.insert({Constants::Paths::lightShaderVertex,     std::make_unique<Shader>(lightShader)});
+	shaders.insert({Constants::Paths::pointShaderVertex,     std::make_unique<Shader>(pointShader)});
+	shaders.insert({Constants::Paths::faceShaderVertex,      std::make_unique<Shader>(faceShader)});
+	shaders.insert({Constants::Paths::face2DShaderVertex,    std::make_unique<Shader>(face2DShader)});
 	shaders.insert({Constants::Paths::wireframeShaderVertex, std::make_unique<Shader>(wireframeShader)});
-	shaders.insert({Constants::Paths::text2DShaderVertex, std::make_unique<Shader>(text2DShader)});
-	shaders.insert({Constants::Paths::text3DShaderVertex, std::make_unique<Shader>(text3DShader)});
-	shaders.insert({Constants::Paths::particleShaderVertex, std::make_unique<Shader>(particleShader)});
-	shaders.insert({Constants::Paths::snowShaderVertex, std::make_unique<Shader>(snowShader) });
+	shaders.insert({Constants::Paths::text2DShaderVertex,    std::make_unique<Shader>(text2DShader)});
+	shaders.insert({Constants::Paths::text3DShaderVertex,    std::make_unique<Shader>(text3DShader)});
+	shaders.insert({Constants::Paths::particleShaderVertex,  std::make_unique<Shader>(particleShader)});
+	shaders.insert({Constants::Paths::snowShaderVertex,      std::make_unique<Shader>(snowShader) });
+	shaders.insert({Constants::Paths::bezierShaderVertex,    std::make_unique<Shader>(snowShader) });
 
 	// Setting default shaders
 	SetDefaultPointShader(pointShader);
@@ -362,6 +364,7 @@ void Rendering::LoadShadersAndFonts()
 	wireframeShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
 	particleShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
 	snowShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
+	bezierShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
 
 	face2DShader.AddGlobalUbo(Constants::UBO::Ids::projection, Constants::UBO::Names::projection);
 
