@@ -32,6 +32,7 @@ bool GUI::DrawGUI()
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
+    ImGui::SetNextWindowSize({300.0f, 220.0f}); 
     ImGui::SetNextWindowPos({ 20.0f, 20.0f }, ImGuiCond_::ImGuiCond_Always);
     ImGui::Begin("Read me !");
     ImGui::Text(
@@ -47,6 +48,7 @@ bool GUI::DrawGUI()
         "\t- Down:     Left Ctrl\n"
         "- Camera Rotation: Mouse cursor\n"
         "- Wireframe Color Change: P\n"
+        "- Change Smoothness: Left/Right Arrows\n"
     );
     ImGui::End();
 

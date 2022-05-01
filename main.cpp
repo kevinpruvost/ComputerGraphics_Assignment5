@@ -124,7 +124,7 @@ int main()
 		ImGui::SliderFloat("Time Multiplier", const_cast<float *>(&window->GetTimeMultiplier()), 0.0f, 5.0f);
 		ImGui::Checkbox("Enable/Disable GUI (Press T)", &enableGui);
 
-		int displayMode = DisplayMode - 1;
+		int displayMode = DisplayMode - 1; 
 		const char * const displayModeItems[7] = { "Vertices", "Wireframes", "Vertices/Wireframes", "Faces", "Vertices/Faces", "Wireframes/Faces", "All"};
 		if (ImGui::Combo("Display Mode", &displayMode, displayModeItems, IM_ARRAYSIZE(displayModeItems)))
 		{
