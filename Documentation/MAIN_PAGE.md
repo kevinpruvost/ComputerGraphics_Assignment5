@@ -38,6 +38,7 @@ with an executable file to launch directly.
 - [Mesh_Sphere](class_mesh___sphere.html)
 - [Mesh_Obj](class_mesh___obj.html)
 - [Mesh_Image](class_mesh__image.html)
+- [Mesh_Custom](class_mesh__custom.html)
 - [Mesh](class_mesh.html)
 
 ### Light

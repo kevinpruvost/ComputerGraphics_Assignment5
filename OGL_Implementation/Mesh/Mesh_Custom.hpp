@@ -11,6 +11,9 @@
 #include "Mesh_Base.hpp"
 #include "Mesh_Geometry.hpp"
 
+/**
+ * @brief Mesh built from a given set of vertices
+*/
 class Mesh_Custom : public Mesh_Base
 {
 public:

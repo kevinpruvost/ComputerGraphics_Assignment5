@@ -52,35 +52,35 @@ int main()
 	}
 
 	Mesh customMesh = GenerateMesh({
-		{-1.5f, 1.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{-0.5f, 2.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.0f,  0.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.5f,  2.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{1.5f,  1.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-
-		{-1.5f, 2.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{-0.5f, 1.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.0f,  0.5f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.5f,  1.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{1.5f,  2.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-
 		{-1.5f, 1.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{-0.5f, -2.0f,-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.0f,  -1.0f,-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.5f,  1.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{1.5f,  0.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, 2.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  0.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  2.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f,  1.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
 
-		{-1.5,  0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{-0.5,  1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.0f,  1.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.5f,  0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{1.5f, -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-1.5f, 2.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f,  2.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
 
-		{-1.5f, 0.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{-0.5f, 1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.0f,  1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{0.5f, -1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
-		{1.5f, -1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}
+		{-1.5f, 1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f,  0.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+
+		{-1.5,  0.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5,  1.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  1.5f,  1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  0.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f, -1.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+
+		{-1.5f, 0.0f,  2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, 1.0f,  2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  1.0f,  2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f, -1.0f,  2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f, -1.0f,  2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}
 	});
 
 	Entity bezierEntity(customMesh,
@@ -89,14 +89,16 @@ int main()
 		*Rendering::shaders.at(Constants::Paths::bezierShaderVertex));
 	bezierEntity.SetTexture(groundTexture);
 
-	bezierEntity.shaderAttributes.insert({
-		{"uOuter02", 5.0f },
-		{"uOuter13", 5.0f},
-		{"uInner0",  5.0f},
-		{"uInner1",  5.0f}
-	});
+	float smoothness = 5.0f;
+	auto setSmoothness = [&]() {
+		bezierEntity.shaderAttributes["uOuter02"] =
+			bezierEntity.shaderAttributes["uOuter13"] =
+			bezierEntity.shaderAttributes["uInner0"] =
+			bezierEntity.shaderAttributes["uInner1"] = smoothness;
+	};
+	setSmoothness();
 
-	Camera camera(window->windowWidth(), window->windowHeight(), 0.0f, 0.0f, -20.0f);
+	Camera camera(window->windowWidth(), window->windowHeight(), -2.0f, 4.0f, 5.0f);
 	camera.MovementSpeed *= 5.0f;
 	mainCamera = &camera;
 
@@ -107,9 +109,10 @@ int main()
 	GUI gui(window->window);
 	// Creating Second Window
 	bool enableGui = true;
+	bool autoRotation = true;
 	gui.AddCallback([&]() {
 		const float width = 320.0f;
-		const float height = 430.0f;
+		const float height = 200.0f;
 		ImGui::SetNextWindowSize({ width, height }, ImGuiCond_::ImGuiCond_Always);
 		ImGui::SetNextWindowPos(
 			{ImGui::GetIO().DisplaySize.x - 20.0f - width, 20.0f},
@@ -126,6 +129,13 @@ int main()
 		if (ImGui::Combo("Display Mode", &displayMode, displayModeItems, IM_ARRAYSIZE(displayModeItems)))
 		{
 			DisplayMode = static_cast<RenderingMode>(displayMode + 1);
+		}
+
+		ImGui::Checkbox("Auto-Rotation", &autoRotation);
+
+		if (ImGui::SliderFloat("Smoothness", &smoothness, 1.0f, 30.0f))
+		{
+			setSmoothness();
 		}
 
 		ImGui::End();
@@ -158,6 +168,17 @@ int main()
 		if (window->key(GLFW_KEY_F) == InputKey::JustPressed)
 		{
 			Rendering::RotateFonts();
+		}
+
+		if (window->key(GLFW_KEY_LEFT) == InputKey::Pressed)
+		{
+			smoothness = std::max(1.0f, smoothness - 2.0f * window->DeltaTime());
+			setSmoothness();
+		}
+		if (window->key(GLFW_KEY_RIGHT) == InputKey::Pressed)
+		{
+			smoothness = std::min(30.0f, smoothness + 2.0f * window->DeltaTime());
+			setSmoothness();
 		}
 
 		// Enable/Disable GUI
@@ -197,30 +218,18 @@ int main()
 		if (window->key(GLFW_KEY_P) == InputKey::JustPressed)
 			Rendering::RotateWireframeColor();
 
+		if (autoRotation)
+		{
+			bezierEntity.quat.RotateY(30.0f * window->DeltaTime());
+		}
+
 		Rendering::Refresh();
 
 		// display mode & activate shader
 		Rendering::DrawEntity(bezierEntity);
 
-		/*for (auto e : { })
-		{
-			if (DisplayMode & RenderingMode::VerticesMode)  Rendering::DrawVertices(*e);
-			if (DisplayMode & RenderingMode::WireframeMode) Rendering::DrawWireframe(*e);
-			if (DisplayMode & RenderingMode::FacesMode)     Rendering::DrawFaces(*e);
-		}*/
-		
-
 		if (enableGui)
 		{
-			//// Drawing 3D Text
-			//for (auto t : { &textEarth, &textJupiter, &textMars, &textMercury, &textMoon, &textNeptune, &textSaturn, &textSun, &textUranus, &textVenus })
-			//{
-			//	Rendering::DrawText(*t);
-			//}
-
-			//// Drawing 2D Text
-			//Rendering::DrawText(text);
-
 			// Drawing ImGui GUI
 			if (!gui.DrawGUI()) return false;
 		}
