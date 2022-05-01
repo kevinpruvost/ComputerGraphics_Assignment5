@@ -19,6 +19,7 @@
 static GLuint programUsed = -1;
 
 Shader_Base::Shader_Base(const GLchar * vertexPath, const GLchar * fragmentPath)
+	: __primitiveMode(GL_TRIANGLES)
 {
 	GLuint vertexID, fragID;
 	if (!CompileShader(vertexPath,   GL_VERTEX_SHADER, &vertexID) ||
@@ -42,9 +43,13 @@ Shader_Base::Shader_Base(const GLchar * vertexPath, const GLchar * fragmentPath)
 		LOG_PRINT(stderr, "ERROR::SHADER::PROGRAM::LINKING_FAILED for %s: %s\n", vertexPath, infoLog);
 		throw std::runtime_error("ERROR::SHADER::PROGRAM::LINKING_FAILED");
 	}
+
+	glDeleteShader(vertexID);
+	glDeleteShader(fragID);
 }
 
 Shader_Base::Shader_Base(const GLchar * vertexPath, const GLchar * fragmentPath, const GLchar * tcsPath, const GLchar * tesPath)
+	: __primitiveMode(GL_PATCHES)
 {
 	GLuint vertexID, fragID, tcsID, tesID;
 	if (!CompileShader(vertexPath,   GL_VERTEX_SHADER, &vertexID) ||
@@ -72,6 +77,11 @@ Shader_Base::Shader_Base(const GLchar * vertexPath, const GLchar * fragmentPath,
 		LOG_PRINT(stderr, "ERROR::SHADER::PROGRAM::LINKING_FAILED: %s\n", infoLog);
 		throw std::runtime_error("ERROR::SHADER::PROGRAM::LINKING_FAILED");
 	}
+
+	glDeleteShader(vertexID);
+	glDeleteShader(fragID);
+	glDeleteShader(tcsID);
+	glDeleteShader(tesID);
 }
 
 Shader_Base::~Shader_Base()
@@ -192,4 +202,9 @@ GLuint Shader_Base::GetUniformId(const GLchar * uniformName)
 		return __uniformIds[uniformName];
 	auto pair = __uniformIds.emplace(uniformName, glGetUniformLocation(__program, uniformName));
 	return pair.second;
+}
+
+GLenum Shader_Base::GetPrimitiveMode() const
+{
+	return __primitiveMode;
 }

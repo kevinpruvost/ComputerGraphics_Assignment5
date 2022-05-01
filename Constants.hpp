@@ -12,7 +12,7 @@ namespace Constants
 {
 namespace Window
 {
-constexpr const char * windowName = "Assignment 4: Pruvost Kevin 2021400603";
+constexpr const char * windowName = "Assignment 5: Pruvost Kevin 2021400603";
 }; // !Constants::Window
 
 namespace Paths
@@ -45,11 +45,19 @@ constexpr const char * bezierShaderFrag   = "resources/Shaders/bezier.frag.glsl"
 constexpr const char * bezierShaderVertex = "resources/Shaders/bezier.vert.glsl";
 constexpr const char * bezierShaderTcs    = "resources/Shaders/bezier.tcs.glsl";
 constexpr const char * bezierShaderTes    = "resources/Shaders/bezier.tes.glsl";
+
+constexpr const char * bezierWireframeShader = "bezier_wireframe";
+constexpr const char * bezierWireframeShaderFrag   = "resources/Shaders/wireframe.frag.glsl";
+constexpr const char * bezierWireframeShaderVertex = "resources/Shaders/wireframe.vert.glsl";
+constexpr const char * bezierWireframeShaderTcs    = "resources/Shaders/bezier.tcs.glsl";
+constexpr const char * bezierWireframeShaderTes    = "resources/Shaders/bezier.tes.glsl";
 // Planets
 constexpr const char * star = "resources/Textures/Star.bmp";
 // Snow
 constexpr const char * snowflake       = "resources/Textures/snow2.png";
 constexpr const char * snowyBackground = "resources/Textures/snowy_background.png";
+// Bezier
+constexpr const char * ground1 = "resources/Textures/ground1.png";
 // Fonts
 constexpr const char * arialFont = "resources/Fonts/arial.ttf";
 constexpr const char * starFont  = "resources/Fonts/star.ttf";

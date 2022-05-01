@@ -51,6 +51,9 @@ public:
 
     void SetUniformMatrix4f(const GLchar * uniformName, const glm::mat4 & mat);
 
+    Shader_Base * operator*();
+    const Shader_Base * operator*() const;
+
 public:
     GLuint __shaderId;
 };

@@ -10,6 +10,15 @@
 // GLAD includes
 #include <GLAD\glad.h>
 
+// C++ includes
+#include <type_traits>
+
+class Mesh_Base;
+
+/// @brief Concept checking if the type is a Mesh_Base child.
+template<class T>
+concept Mesh_Based = std::is_base_of_v<Mesh_Base, T>;
+
 /**
  * @brief Contains the real data of the mesh to be
  * stored in a static database.
@@ -28,6 +37,12 @@ public:
     GLuint GetVerticesCount() const;
     GLuint GetFacesVerticesCount() const;
 
+    template<Mesh_Based M>
+    M * Cast();
+
+    template<Mesh_Based M>
+    const M * Cast() const;
+
     virtual GLuint GetFacesEBO() const = 0;
     virtual bool IsUsingEBO() const = 0;
 
@@ -45,3 +60,5 @@ protected:
     GLuint __verticesVBO, __facesVBO;
     GLuint __verticesNVert, __facesNVert;
 };
+
+#include "Mesh_Base.inl"

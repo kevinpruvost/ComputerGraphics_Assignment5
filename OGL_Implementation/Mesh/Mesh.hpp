@@ -15,6 +15,7 @@
 #include "Mesh_Obj.hpp"
 #include "Mesh_Sphere.hpp"
 #include "Mesh_Image.hpp"
+#include "Mesh_Custom.hpp"
 
 #include "OGL_Implementation\DebugInfo\Log.hpp"
 
@@ -46,6 +47,9 @@ public:
     GLuint verticesNVert() const;
     GLuint facesNVert() const;
 
+    Mesh_Base * operator*();
+    const Mesh_Base * operator*() const;
+
     GLuint facesEBO() const;
     bool isUsingEBO() const;
 
@@ -69,6 +73,12 @@ Mesh GenerateMeshImage();
  * @return mesh
 */
 Mesh GenerateMeshSphere(float radius = 1.0f, int sectorCount = 36, int stackCount = 18, bool smooth = true);
+/**
+ * @brief Generates mesh from vertices list
+ * @param vertices
+ * @return mesh
+*/
+Mesh GenerateMesh(const std::vector<VertexNormalTexture> & vertices);
 /**
  * @brief Generates mesh from obj class, stores it in the mesh database
  * and returns a Mesh class.

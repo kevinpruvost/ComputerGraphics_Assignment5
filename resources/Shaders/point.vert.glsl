@@ -16,8 +16,6 @@ layout (std140) uniform CameraProps
 	mat4 projection;
 };
 
-out vec3 ourColor;
-
 void main()
 {
 	gl_Position = viewProj * model * vec4(position, 1.0f);

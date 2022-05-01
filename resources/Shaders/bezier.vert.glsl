@@ -1,4 +1,8 @@
-#version 410 core
+/*
+ * GLSL Vertex Shader code for OpenGL version 4.6
+ */
+
+#version 460 core
 
 layout(location = 0) in vec3 aPos;
 

@@ -45,7 +45,7 @@ bool Window::Initialize(const char * windowName, const char * iconPath)
 		return false;
 	// Set all the required options for GLFW
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
@@ -93,7 +93,7 @@ bool Window::Initialize(const char * windowName, const char * iconPath)
 
 	// Setup OpenGL options
 	glEnable(GL_DEPTH_TEST); // Depth
-	glEnable(GL_CULL_FACE); // Face Culling
+	//glEnable(GL_CULL_FACE); // Face Culling
 	glEnable(GL_BLEND); // Blending
 	glEnable(GL_LIGHTING);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Blending options

@@ -78,6 +78,11 @@ void Rendering::DrawFaces(Entity & entity)
 	//glUniformMatrix4fv(id, 1, GL_FALSE, glm::value_ptr(model));
 	shader.SetUniformMatrix4f("model", model);
 
+	for (const auto & pair : entity.shaderAttributes)
+	{
+		shader.SetUniformFloat(pair.first.c_str(), pair.second);
+	}
+
 	// To shader->SetInt
 	shader.SetUniformInt("_texture", 0);
 	glActiveTexture(GL_TEXTURE0);
@@ -87,13 +92,17 @@ void Rendering::DrawFaces(Entity & entity)
 		glBindTexture(GL_TEXTURE_2D, 0);
 
 	glBindVertexArray(entity.GetMesh().facesVAO());
+
+	GLenum primitiveMode = (*shader)->GetPrimitiveMode();
+	if (primitiveMode == GL_PATCHES) glPatchParameteri(GL_PATCH_VERTICES, 25);
+
 	switch (entity.GetMesh().GetDrawMode())
 	{
 		case Mesh_Base::DrawMode::DrawElements:
-			glDrawElements(GL_TRIANGLES, entity.GetMesh().facesNVert(), GL_UNSIGNED_INT, 0);
+			glDrawElements(primitiveMode, entity.GetMesh().facesNVert(), GL_UNSIGNED_INT, 0);
 			break;
 		case Mesh_Base::DrawMode::DrawArrays:
-			glDrawArrays(GL_TRIANGLES, 0, entity.GetMesh().facesNVert());
+			glDrawArrays(primitiveMode, 0, entity.GetMesh().facesNVert());
 			break;
 	}
 	glBindVertexArray(0);
@@ -111,15 +120,24 @@ void Rendering::DrawWireframe(Entity & entity)
 	// use the same color for all points
 	shader.SetUniformFloat("ourColor", WireframeColors[0]);
 
+	for (const auto & pair : entity.shaderAttributes)
+	{
+		shader.SetUniformFloat(pair.first.c_str(), pair.second);
+	}
+
 	glBindVertexArray(entity.GetMesh().facesVAO());
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	GLenum primitiveMode = (*shader)->GetPrimitiveMode();
+	if (primitiveMode == GL_PATCHES) glPatchParameteri(GL_PATCH_VERTICES, 25);
+
 	switch (entity.GetMesh().GetDrawMode())
 	{
 		case Mesh_Base::DrawMode::DrawElements:
-			glDrawElements(GL_TRIANGLES, entity.GetMesh().facesNVert(), GL_UNSIGNED_INT, 0);
+			glDrawElements(primitiveMode, entity.GetMesh().facesNVert(), GL_UNSIGNED_INT, 0);
 			break;
 		case Mesh_Base::DrawMode::DrawArrays:
-			glDrawArrays(GL_TRIANGLES, 0, entity.GetMesh().facesNVert());
+			glDrawArrays(primitiveMode, 0, entity.GetMesh().facesNVert());
 			break;
 	}
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -139,8 +157,16 @@ void Rendering::DrawVertices(Entity & entity)
 	shader.SetUniformFloat("ourColor", WireframeColors[0]);
 
 	glBindVertexArray(entity.GetMesh().verticesVAO());
+
 	glDrawArrays(GL_POINTS, 0, entity.GetMesh().verticesNVert());
 	glBindVertexArray(0);
+}
+
+void Rendering::DrawEntity(Entity & entity)
+{
+	if (DisplayMode & RenderingMode::VerticesMode)  DrawVertices(entity);
+	if (DisplayMode & RenderingMode::WireframeMode) DrawWireframe(entity);
+	if (DisplayMode & RenderingMode::FacesMode)     DrawFaces(entity);
 }
 
 void Rendering::RotateWireframeColor()
@@ -338,7 +364,9 @@ void Rendering::LoadShadersAndFonts()
 	Shader text3DShader    = GenerateShader(Constants::Paths::text3DShaderVertex, Constants::Paths::text3DShaderFrag);
 	Shader particleShader  = GenerateShader(Constants::Paths::particleShaderVertex, Constants::Paths::particleShaderFrag);
 	Shader snowShader      = GenerateShader(Constants::Paths::snowShaderVertex, Constants::Paths::snowShaderFrag);
-	Shader bezierShader    = GenerateShader(Constants::Paths::bezierShaderVertex, Constants::Paths::bezierShaderFrag);
+	Shader bezierShader    = GenerateShader(Constants::Paths::bezierShaderVertex, Constants::Paths::bezierShaderFrag, Constants::Paths::bezierShaderTcs, Constants::Paths::bezierShaderTes);
+
+	Shader bezierWireframeShader = GenerateShader(Constants::Paths::bezierWireframeShaderVertex, Constants::Paths::bezierWireframeShaderFrag, Constants::Paths::bezierWireframeShaderTcs, Constants::Paths::bezierWireframeShaderTes);
 
 	shaders.insert({Constants::Paths::lightShaderVertex,     std::make_unique<Shader>(lightShader)});
 	shaders.insert({Constants::Paths::pointShaderVertex,     std::make_unique<Shader>(pointShader)});
@@ -349,7 +377,8 @@ void Rendering::LoadShadersAndFonts()
 	shaders.insert({Constants::Paths::text3DShaderVertex,    std::make_unique<Shader>(text3DShader)});
 	shaders.insert({Constants::Paths::particleShaderVertex,  std::make_unique<Shader>(particleShader)});
 	shaders.insert({Constants::Paths::snowShaderVertex,      std::make_unique<Shader>(snowShader) });
-	shaders.insert({Constants::Paths::bezierShaderVertex,    std::make_unique<Shader>(snowShader) });
+	shaders.insert({Constants::Paths::bezierShaderVertex,    std::make_unique<Shader>(bezierShader) });
+	shaders.insert({Constants::Paths::bezierWireframeShader,    std::make_unique<Shader>(bezierWireframeShader) });
 
 	// Setting default shaders
 	SetDefaultPointShader(pointShader);
@@ -365,6 +394,7 @@ void Rendering::LoadShadersAndFonts()
 	particleShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
 	snowShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
 	bezierShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
+	bezierWireframeShader.AddGlobalUbo(Constants::UBO::Ids::cameraProps, Constants::UBO::Names::cameraProps);
 
 	face2DShader.AddGlobalUbo(Constants::UBO::Ids::projection, Constants::UBO::Names::projection);
 

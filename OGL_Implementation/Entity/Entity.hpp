@@ -99,6 +99,11 @@ public:
      * @brief Quaternion
     */
     Quaternion quat;
+
+    /**
+     * @brief Additional info to pass on to shaders
+    */
+    std::unordered_map<std::string, float> shaderAttributes;
 private:
     /**
      * @brief Mesh Identifier.

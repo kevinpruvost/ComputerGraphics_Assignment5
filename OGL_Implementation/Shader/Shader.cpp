@@ -90,3 +90,13 @@ void Shader::SetUniformMatrix4f(const GLchar * uniformName, const glm::mat4 & ma
 {
     shaderDB[__shaderId]->SetUniformMatrix4f(uniformName, mat);
 }
+
+Shader_Base * Shader::operator*()
+{
+    return shaderDB[__shaderId].get();
+}
+
+const Shader_Base * Shader::operator*() const
+{
+    return shaderDB[__shaderId].get();
+}

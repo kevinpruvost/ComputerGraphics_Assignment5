@@ -42,6 +42,8 @@ public:
     static void DrawWireframe(Entity & entity);
     static void DrawVertices(Entity & entity);
 
+    static void DrawEntity(Entity & entity);
+
     static void RotateWireframeColor();
 
     // Image

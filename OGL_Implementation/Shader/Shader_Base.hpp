@@ -74,11 +74,16 @@ public:
 	void SetUniformMatrix4f(const GLchar * uniformName, const glm::mat4 & mat);
 
 	GLuint GetUniformId(const GLchar * uniformName);
+	GLenum GetPrimitiveMode() const;
 
 private:
 	bool CompileShader(const GLchar * shaderPath, const GLenum shaderType, GLuint * shaderID);
 
 private:
+	/**
+	 * @brief Primitive Mode (if drawing has to be made in some other ways e.g. GL_PATCHES, GL_TRIANGLES...)
+	*/
+	const GLenum  __primitiveMode;
 	/**
 	 * @brief Shader program id
 	*/

@@ -28,6 +28,16 @@ GLuint Mesh::facesVBO() const { return meshesDB[__meshId]->GetFacesVBO(); }
 GLuint Mesh::verticesNVert() const { return meshesDB[__meshId]->GetVerticesCount(); }
 GLuint Mesh::facesNVert() const { return meshesDB[__meshId]->GetFacesVerticesCount(); }
 
+Mesh_Base * Mesh::operator*()
+{
+	return meshesDB[__meshId].get();
+}
+
+const Mesh_Base * Mesh::operator*() const
+{
+	return meshesDB[__meshId].get();
+}
+
 GLuint Mesh::facesEBO() const
 {
 	return meshesDB[__meshId]->GetFacesEBO();
@@ -52,6 +62,12 @@ Mesh GenerateMeshImage()
 Mesh GenerateMeshSphere(float radius, int sectors, int stacks, bool smooth)
 {
 	meshesDB.emplace_back(new Mesh_Sphere(radius, sectors, stacks, smooth));
+	return Mesh(meshesDB.size() - 1);
+}
+
+Mesh GenerateMesh(const std::vector<VertexNormalTexture> & vertices)
+{
+	meshesDB.emplace_back(new Mesh_Custom(vertices));
 	return Mesh(meshesDB.size() - 1);
 }
 

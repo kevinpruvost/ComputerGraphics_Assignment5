@@ -44,42 +44,63 @@ int main()
 
 	Rendering::Init();
 
-	Texture snowTexture;
-	if (!GenerateTexture(Constants::Paths::snowflake, snowTexture))
+	Texture groundTexture;
+	if (!GenerateTexture(Constants::Paths::ground1, groundTexture))
 	{
-		LOG_PRINT(stderr, "Couldn't generate texture '%s'\n", Constants::Paths::snowflake);
+		LOG_PRINT(stderr, "Couldn't generate texture '%s'\n", Constants::Paths::ground1);
 		return EXIT_FAILURE;
 	}
 
-	Texture backgroundTexture;
-	if (!GenerateTexture(Constants::Paths::snowyBackground, backgroundTexture))
-	{
-		LOG_PRINT(stderr, "Couldn't generate texture '%s'\n", Constants::Paths::snowyBackground);
-		return EXIT_FAILURE;
-	}
+	Mesh customMesh = GenerateMesh({
+		{-1.5f, 1.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, 2.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  0.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  2.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f,  1.0f, -4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
 
-	ParticleSystem_Snow snowSystem(
-		*Rendering::shaders.at(Constants::Paths::pointShaderVertex),
-		*Rendering::shaders.at(Constants::Paths::wireframeShaderVertex),
-		*Rendering::shaders.at(Constants::Paths::snowShaderVertex)
-	);
-	snowSystem.texture = snowTexture;
-	snowSystem.radius = 11.0f;
-	snowSystem.frequency = 30.0f;
-	snowSystem.maxParticles = 300;
+		{-1.5f, 2.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, 1.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  0.5f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  1.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f,  2.0f, -3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
 
-	Mesh meshImage = GenerateMeshImage();
-	Image2D background(meshImage,
+		{-1.5f, 1.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, -2.0f,-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  -1.0f,-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  1.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f,  0.0f, -2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+
+		{-1.5,  0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5,  1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  1.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f,  0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f, -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+
+		{-1.5f, 0.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{-0.5f, 1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.0f,  1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{0.5f, -1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f},
+		{1.5f, -1.0f,  0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}
+	});
+
+	Entity bezierEntity(customMesh,
 		*Rendering::shaders.at(Constants::Paths::pointShaderVertex),
-		*Rendering::shaders.at(Constants::Paths::wireframeShaderVertex),
-		*Rendering::shaders.at(Constants::Paths::face2DShaderVertex),
-		{0.5f, 0.5f}, 1.0f
-	);
-	background.SetTexture(backgroundTexture);
+		*Rendering::shaders.at(Constants::Paths::bezierWireframeShader),
+		*Rendering::shaders.at(Constants::Paths::bezierShaderVertex));
+	bezierEntity.SetTexture(groundTexture);
+
+	bezierEntity.shaderAttributes.insert({
+		{"uOuter02", 5.0f },
+		{"uOuter13", 5.0f},
+		{"uInner0",  5.0f},
+		{"uInner1",  5.0f}
+	});
 
 	Camera camera(window->windowWidth(), window->windowHeight(), 0.0f, 0.0f, -20.0f);
 	camera.MovementSpeed *= 5.0f;
 	mainCamera = &camera;
+
+	camera.LookAt(bezierEntity.pos);
 
 	bool cameraLock = false;
 	// GUI
@@ -100,56 +121,20 @@ int main()
 		ImGui::SliderFloat("Time Multiplier", const_cast<float *>(&window->GetTimeMultiplier()), 0.0f, 5.0f);
 		ImGui::Checkbox("Enable/Disable GUI (Press T)", &enableGui);
 
-		int displayMode = 0;
-		if (DisplayMode & RenderingMode::WireframeMode) displayMode += 1;
-		if (DisplayMode & RenderingMode::FacesMode) displayMode += 2;
-		const char * const displayModeItems[4] = { "Vertices", "Wireframes", "Faces", "Faces + Wireframes" };
+		int displayMode = DisplayMode - 1;
+		const char * const displayModeItems[7] = { "Vertices", "Wireframes", "Vertices/Wireframes", "Faces", "Vertices/Faces", "Wireframes/Faces", "All"};
 		if (ImGui::Combo("Display Mode", &displayMode, displayModeItems, IM_ARRAYSIZE(displayModeItems)))
 		{
-			switch (displayMode)
-			{
-				case 0:
-					DisplayMode = RenderingMode::VerticesMode; break;
-				case 1:
-					DisplayMode = RenderingMode::WireframeMode; break;
-				case 2:
-					DisplayMode = RenderingMode::FacesMode; break;
-				case 3:
-					DisplayMode = RenderingMode::FacesAndWireframeMode; break;
-			}
-		}
-
-		ImGui::SliderFloat("Spawn Radius", &snowSystem.radius, 0.0f, 15.0f);
-		ImGui::SliderFloat("Gravity (m/s^2)", &snowSystem.gravity, 0.1f, 9.81f);
-		ImGui::SliderFloat("Particle Speed", &snowSystem.particleSpeed, 0.0f, 20.0f);
-		ImGui::SliderFloat("Min Scale", &snowSystem.minScale, 0.1f, 2.0f);
-		ImGui::SliderFloat("Max Scale", &snowSystem.maxScale, 2.0f, 5.0f);
-		ImGui::SliderInt("Scale Steps", (int *)&snowSystem.stepScale, 1, 50);
-
-		ImGui::SliderFloat("Frequency", &snowSystem.frequency, 0.0f, 50.0f);
-		ImGui::SliderFloat("Life Span", &snowSystem.lifeSpan, 0.0f, 60.0f);
-		ImGui::SliderInt("Max Particles", (int *)&snowSystem.maxParticles, 0, 5000);
-
-		ImGui::LabelText("Entities Count", "%d\n", snowSystem.GetParticles().size());
-
-		if (ImGui::Button(snowSystem.isStopped() ? "Start" : "Stop", { width / 2.5f, 50.0f}))
-		{
-			snowSystem.isStopped() ? snowSystem.Start() : snowSystem.Stop();
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("Reset", { width / 2.5f, 50.0f }))
-		{
-			snowSystem.Reset();
+			DisplayMode = static_cast<RenderingMode>(displayMode + 1);
 		}
 
 		ImGui::End();
 		return true;
 	});
 
-	camera.LookAt(snowSystem.pos);
-	snowSystem.pos.y = 3.0f;
-
 	float backgroundColor[4] = { 0.15f, 0.3f, 0.4f, 1.0f };
+
+	glPointSize(5.0f);
 
 	window->Loop([&]() {
 		// Render
@@ -159,7 +144,7 @@ int main()
 
 		// Switch mesh mode
 		if (window->key(GLFW_KEY_C) == InputKey::JustPressed)
-			DisplayMode = (RenderingMode)(((int)DisplayMode + 1) % 4);
+			DisplayMode = (RenderingMode)(((int)((DisplayMode % 7) + 1)));
 
 		// Camera Lock
 		if (window->key(GLFW_KEY_L) == InputKey::JustPressed)
@@ -214,13 +199,8 @@ int main()
 
 		Rendering::Refresh();
 
-		snowSystem.Update();
-		snowSystem.displayMode = DisplayMode;
-
-		Rendering::DrawImage(background);
-
 		// display mode & activate shader
-		Rendering::DrawParticleSystem(&snowSystem);
+		Rendering::DrawEntity(bezierEntity);
 
 		/*for (auto e : { })
 		{

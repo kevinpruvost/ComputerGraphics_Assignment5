@@ -58,6 +58,7 @@ file (GLOB ASSIGNMENT_HEADERS
     *.hpp
     OGL_Implementation/*.hpp
     OGL_Implementation/DebugInfo/*.hpp
+    OGL_Implementation/Mesh/*.inl
     OGL_Implementation/Mesh/*.hpp
     OGL_Implementation/Shader/*.hpp
     OGL_Implementation/Entity/*.hpp

@@ -13,12 +13,18 @@
 // C++ includes
 #include <array>
 
+/**
+ * @brief Enum of every way to display a mesh (points, wireframes, faces & mixes between them)
+*/
 enum RenderingMode
 {
-    VerticesMode          = 0b001,
-    WireframeMode         = 0b010,
-    FacesMode             = 0b100,
-    FacesAndWireframeMode = 0b110
+    VerticesMode             = 0b001,
+    WireframeMode            = 0b010,
+    VerticesAndWireframeMode = 0b011,
+    FacesMode                = 0b100,
+    VerticesAndFacesMode     = 0b101,
+    FacesAndWireframeMode    = 0b110,
+    AllRenderingModes        = 0b111
 };
 
 // Display Mode

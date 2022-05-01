@@ -4,7 +4,6 @@
 
 #version 330 core
 
-// input vertex attributes
 layout (location = 0) in vec3 aPos;
 
 uniform mat4 model;
