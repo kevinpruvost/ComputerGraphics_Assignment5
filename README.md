@@ -1,4 +1,4 @@
-# Assignment 5 of Fundamentals of Computer Graphics: Snow Particles
+# Assignment 5 of Fundamentals of Computer Graphics: Bezier Surfaces
 
 <p align="center">
   <img src="https://github.com/kevinpruvost/OpenImages/blob/miscellaneous/images/1200px-Tsinghua_University_Logo.svg.png" width=250/><br/><br/>
